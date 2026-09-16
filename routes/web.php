@@ -32,6 +32,27 @@ Route::get('/', function () {
 
             Route::post('/users', [UserController::class, 'store'])
              ->name('users.store');
+
+            
+            Route::get('/customers', function () {
+                return view('admin.customers');
+            })->name('customers');
+
+            Route::get('/vehicles', function () {
+                return view('admin.vehicles');
+            })->name('vehicles');
+
+            Route::get('/staff', function () {
+                return view('admin.staff');
+            })->name('staff');
+
+            Route::get('/job-orders', function () {
+                return view('admin.job-orders');
+            })->name('job-orders');
+
+            Route::get('/services', function () {
+                return view('admin.services');
+            })->name('services');
         });
 
 
@@ -42,6 +63,25 @@ Route::get('/', function () {
             Route::get('/dashboard', function () {
                 return view('supervisor.dashboard');
             })->name('dashboard');
+
+
+
+            Route::get('/pending-approvals', function () {
+                return view('supervisor.pending-approvals');
+            })->name('pending-approvals');
+
+            Route::get('/AJO', function () {
+                return view('supervisor.AJO');
+            })->name('AJO');
+
+            Route::get('/assign-mechanic', function () {
+                return view('supervisor.assign-mechanic');
+            })->name('assign-mechanic');
+
+            Route::get('/approval-history', function () {
+                return view('supervisor.approval-history');
+            })->name('approval-history');
+
         });
 
     Route::middleware(['auth', 'verified', 'role:mechanic'])
