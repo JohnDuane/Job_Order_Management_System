@@ -91,6 +91,21 @@ Route::get('/', function () {
             Route::get('/dashboard', function () {
                 return view('mechanic.dashboard');
             })->name('dashboard');
+
+
+            Route::get('/MJO', function () {
+                return view('mechanic.MJO');
+            })->name('MJO');
+
+            Route::get('/CJO', function () {
+                return view('mechanic.CJO');
+            })->name('CJO');
+
+            Route::get('/needs-revision', function () {
+                return view('mechanic.needs-revision');
+            })->name('needs-revision');
+
+
         });
 
 
