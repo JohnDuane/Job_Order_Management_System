@@ -26,14 +26,29 @@ Route::get('/', function () {
                 return view('admin.dashboard');
             })->name('dashboard');
 
+            //DASHBOARD
             Route::get('/users/create', function () {
                 return view('admin.users.create');
             })->name('users.create');
+
+            Route::get('/users/addcustomer', function () {
+                return view('admin.users.addcustomer');
+            })->name('users.addcustomer');
+
+            Route::get('/users/addservices', function () {
+                return view('admin.users.addservices');
+            })->name('users.addservices');
+
+            Route::get('/users/addvehicles', function () {
+                return view('admin.users.addvehicles');
+            })->name('users.addvehicles');
+
 
             Route::post('/users', [UserController::class, 'store'])
              ->name('users.store');
 
             
+            //sidenav
             Route::get('/customers', function () {
                 return view('admin.customers');
             })->name('customers');

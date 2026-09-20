@@ -46,8 +46,7 @@
                     >
                         <option>All statuses</option>
                         <option>Assigned</option>
-                        <option>In progress</option>
-                        <option>Completed</option>
+                        <option>Pending</option>
                         <option>Needs revision</option>
                     </select>
 
@@ -87,7 +86,7 @@
                                         </p>
 
                                         <span class="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-md">
-                                            In progress
+                                            Pending
                                         </span>
 
                                     </div>
@@ -136,7 +135,7 @@
                                         </p>
 
                                         <span class="bg-green-50 text-green-700 text-xs px-2.5 py-1 rounded-md">
-                                            Completed
+                                            Approved
                                         </span>
 
                                     </div>
@@ -150,7 +149,7 @@
                                     </p>
 
                                     <p class="text-xs text-gray-400 mt-1">
-                                        Completed Sep 8, 2026
+                                        Approved Sep 8, 2026
                                     </p>
 
                                 </div>
@@ -185,7 +184,7 @@
                                         </p>
 
                                         <span class="bg-gray-100 text-gray-600 text-xs px-2.5 py-1 rounded-md">
-                                            Assigned
+                                            Assigned to you
                                         </span>
 
                                     </div>

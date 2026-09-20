@@ -4,12 +4,15 @@
 
         <div class="flex min-h-screen">
 
+            {{-- Supervisor Sidebar --}}
             <x-supervisor-sidebar />
 
 
+            {{-- Main Content --}}
             <main class="flex-1 min-w-0 p-8 flex flex-col gap-6">
 
-                <!-- Header -->
+
+                {{-- Header --}}
                 <div>
 
                     <h1 class="text-2xl font-medium">
@@ -23,25 +26,185 @@
                 </div>
 
 
-                <!-- Search -->
-                <div class="relative max-w-md">
+                {{-- Search + Filter --}}
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
 
-                    <i class="ti ti-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    {{-- Search --}}
+                    <div class="relative max-w-sm flex-1 sm:max-w-sm">
 
-                    <input
-                        type="text"
-                        placeholder="Search job orders..."
-                        class="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg
-                               focus:outline-none focus:ring-2 focus:ring-blue-100
-                               focus:border-blue-300"
+                        <i
+                            class="ti ti-search absolute left-3 top-1/2
+                                   -translate-y-1/2 text-gray-400"
+                        ></i>
+
+                        <input
+                            type="text"
+                            placeholder="Search Job Orders..."
+                            class="w-full rounded-lg border border-gray-200
+                                   py-2 pl-9 pr-3 text-sm
+                                   focus:border-gray-300
+                                   focus:outline-none
+                                   focus:ring-2 focus:ring-gray-100"
+                        >
+
+                    </div>
+
+
+                    {{-- Filter --}}
+                    <div
+                        class="relative"
+                        x-data="{ open: false }"
                     >
+
+                        <button
+                            type="button"
+                            @click="open = !open"
+                            @click.outside="open = false"
+                            class="inline-flex w-full items-center justify-center
+                                   gap-2 rounded-lg border border-gray-200
+                                   bg-white px-3 py-2 text-sm text-gray-600
+                                   transition hover:bg-gray-50
+                                   sm:w-auto"
+                        >
+
+                            <i class="ti ti-filter text-base"></i>
+
+                            Filter
+
+                            <i
+                                class="ti ti-chevron-down text-xs transition-transform"
+                                :class="{ 'rotate-180': open }"
+                            ></i>
+
+                        </button>
+
+
+                        {{-- Filter Dropdown --}}
+                        <div
+                            x-show="open"
+                            x-transition
+                            class="absolute right-0 z-20 mt-2 w-48
+                                   rounded-xl border border-gray-200
+                                   bg-white p-2 shadow-lg"
+                        >
+
+                            <p
+                                class="px-3 py-2 text-xs font-medium
+                                       uppercase tracking-wide text-gray-400"
+                            >
+                                Sort / Filter
+                            </p>
+
+
+                            {{-- Recent --}}
+                            <button
+                                type="button"
+                                @click="open = false"
+                                class="flex w-full items-center gap-3
+                                       rounded-lg px-3 py-2 text-sm text-gray-700
+                                       transition hover:bg-gray-50"
+                            >
+
+                                <i class="ti ti-sort-descending text-base text-gray-400"></i>
+
+                                Recent
+
+                            </button>
+
+
+                            {{-- Oldest --}}
+                            <button
+                                type="button"
+                                @click="open = false"
+                                class="flex w-full items-center gap-3
+                                       rounded-lg px-3 py-2 text-sm text-gray-700
+                                       transition hover:bg-gray-50"
+                            >
+
+                                <i class="ti ti-sort-ascending text-base text-gray-400"></i>
+
+                                Oldest
+
+                            </button>
+
+
+                            <div class="my-1 border-t border-gray-100"></div>
+
+
+                            {{-- By Customer --}}
+                            <button
+                                type="button"
+                                @click="open = false"
+                                class="flex w-full items-center gap-3
+                                       rounded-lg px-3 py-2 text-sm text-gray-700
+                                       transition hover:bg-gray-50"
+                            >
+
+                                <i class="ti ti-user text-base text-gray-400"></i>
+
+                                By Customer
+
+                            </button>
+
+
+                            {{-- By Vehicle --}}
+                            <button
+                                type="button"
+                                @click="open = false"
+                                class="flex w-full items-center gap-3
+                                       rounded-lg px-3 py-2 text-sm text-gray-700
+                                       transition hover:bg-gray-50"
+                            >
+
+                                <i class="ti ti-car text-base text-gray-400"></i>
+
+                                By Vehicle
+
+                            </button>
+
+
+                            {{-- By Mechanic --}}
+                            <button
+                                type="button"
+                                @click="open = false"
+                                class="flex w-full items-center gap-3
+                                       rounded-lg px-3 py-2 text-sm text-gray-700
+                                       transition hover:bg-gray-50"
+                            >
+
+                                <i class="ti ti-user-check text-base text-gray-400"></i>
+
+                                By Mechanic
+
+                            </button>
+
+
+                            {{-- By J.O. ID --}}
+                            <button
+                                type="button"
+                                @click="open = false"
+                                class="flex w-full items-center gap-3
+                                       rounded-lg px-3 py-2 text-sm text-gray-700
+                                       transition hover:bg-gray-50"
+                            >
+
+                                <i class="ti ti-hash text-base text-gray-400"></i>
+
+                                By J.O. ID
+
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
 
-                <!-- Available Job Orders -->
+                {{-- Available Job Orders --}}
                 <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
 
+                    {{-- Section Header --}}
                     <div class="px-5 py-4 border-b border-gray-100">
 
                         <p class="font-medium">
@@ -55,14 +218,23 @@
                     </div>
 
 
+                    {{-- Job Orders --}}
                     <div class="p-4 flex flex-col gap-3">
 
 
-                        <!-- JO -->
-                        <div class="border border-gray-200 rounded-xl p-4">
+                        {{-- ========================================= --}}
+                        {{-- JO-1046 --}}
+                        {{-- ========================================= --}}
 
-                            <div class="flex flex-col lg:flex-row lg:items-center gap-4">
+                        <div
+                            class="border border-gray-200 rounded-xl p-4"
+                            x-data="{ open: false, selected: [] }"
+                        >
 
+                            <div class="flex flex-col lg:flex-row lg:items-start gap-4">
+
+
+                                {{-- Job Order Information --}}
                                 <div class="flex-1">
 
                                     <div class="flex items-center gap-2">
@@ -71,19 +243,25 @@
                                             JO-1046
                                         </p>
 
-                                        <span class="bg-green-50 text-green-700 text-xs px-2 py-1 rounded-md">
+                                        <span
+                                            class="bg-green-50 text-green-700
+                                                   text-xs px-2 py-1 rounded-md"
+                                        >
                                             Approved
                                         </span>
 
                                     </div>
 
+
                                     <p class="text-sm mt-1">
                                         Juan Dela Cruz
                                     </p>
 
+
                                     <p class="text-xs text-gray-500 mt-0.5">
                                         Toyota Vios · Brake repair
                                     </p>
+
 
                                     <p class="text-xs text-gray-400 mt-1">
                                         Approved Sep 12, 2026
@@ -92,23 +270,194 @@
                                 </div>
 
 
-                                <div class="flex flex-col sm:flex-row gap-2">
+                                {{-- Assignment Controls --}}
+                                <div
+                                    class="flex flex-col sm:flex-row
+                                           sm:items-start gap-2"
+                                >
 
-                                    <select
-                                        class="min-w-[190px] px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white text-gray-600"
-                                    >
-                                        <option>Select mechanic</option>
-                                        <option>John Cuyos</option>
-                                        <option>Sharwen Lopez</option>
-                                        <option>Adili</option>
-                                    </select>
+                                    {{-- Mechanic Selector --}}
+                                    <div class="w-full sm:w-64">
 
+                                        {{-- Selector Button --}}
+                                        <button
+                                            type="button"
+                                            @click="open = !open"
+                                            class="w-full inline-flex items-center
+                                                   justify-between gap-3 rounded-lg
+                                                   border border-gray-200
+                                                   bg-white px-3 py-2 text-sm
+                                                   text-gray-600
+                                                   hover:bg-gray-50"
+                                        >
+
+                                            <span
+                                                x-text="
+                                                    selected.length === 0
+                                                        ? 'Select mechanic(s)'
+                                                        : selected.length + ' mechanic(s) selected'
+                                                "
+                                            >
+                                                Select mechanic(s)
+                                            </span>
+
+
+                                            <i
+                                                class="ti ti-chevron-down text-sm
+                                                       transition-transform"
+                                                :class="{ 'rotate-180': open }"
+                                            ></i>
+
+                                        </button>
+
+
+                                        {{-- Mechanic Options --}}
+                                        <div
+                                            x-show="open"
+                                            x-transition
+                                            class="mt-2 w-full rounded-xl
+                                                   border border-gray-200
+                                                   bg-white p-2 shadow-sm"
+                                        >
+
+                                            <p
+                                                class="px-3 py-2 text-xs
+                                                       font-medium uppercase
+                                                       tracking-wide text-gray-400"
+                                            >
+                                                Select mechanics
+                                            </p>
+
+
+                                            {{-- John Cuyos --}}
+                                            <label
+                                                class="flex cursor-pointer
+                                                       items-center gap-3
+                                                       rounded-lg px-3 py-2
+                                                       hover:bg-gray-50"
+                                            >
+
+                                                <input
+                                                    type="checkbox"
+                                                    value="john-cuyos"
+                                                    x-model="selected"
+                                                    class="rounded border-gray-300
+                                                           text-gray-900
+                                                           focus:ring-gray-200"
+                                                >
+
+                                                <span class="text-sm text-gray-700">
+                                                    John Cuyos
+                                                </span>
+
+                                            </label>
+
+
+                                            {{-- Sharwen Lopez --}}
+                                            <label
+                                                class="flex cursor-pointer
+                                                       items-center gap-3
+                                                       rounded-lg px-3 py-2
+                                                       hover:bg-gray-50"
+                                            >
+
+                                                <input
+                                                    type="checkbox"
+                                                    value="sharwen-lopez"
+                                                    x-model="selected"
+                                                    class="rounded border-gray-300
+                                                           text-gray-900
+                                                           focus:ring-gray-200"
+                                                >
+
+                                                <span class="text-sm text-gray-700">
+                                                    Sharwen Lopez
+                                                </span>
+
+                                            </label>
+
+
+                                            {{-- Adili --}}
+                                            <label
+                                                class="flex cursor-pointer
+                                                       items-center gap-3
+                                                       rounded-lg px-3 py-2
+                                                       hover:bg-gray-50"
+                                            >
+
+                                                <input
+                                                    type="checkbox"
+                                                    value="adili"
+                                                    x-model="selected"
+                                                    class="rounded border-gray-300
+                                                           text-gray-900
+                                                           focus:ring-gray-200"
+                                                >
+
+                                                <span class="text-sm text-gray-700">
+                                                    Adili
+                                                </span>
+
+                                            </label>
+
+
+                                            {{-- Mechanic 4 --}}
+                                            <label
+                                                class="flex cursor-pointer
+                                                       items-center gap-3
+                                                       rounded-lg px-3 py-2
+                                                       hover:bg-gray-50"
+                                            >
+
+                                                <input
+                                                    type="checkbox"
+                                                    value="mechanic-4"
+                                                    x-model="selected"
+                                                    class="rounded border-gray-300
+                                                           text-gray-900
+                                                           focus:ring-gray-200"
+                                                >
+
+                                                <span class="text-sm text-gray-700">
+                                                    Mechanic 4
+                                                </span>
+
+                                            </label>
+
+                                        </div>
+
+
+                                        {{-- Selected Mechanics --}}
+                                        <template
+                                            x-for="mechanic in selected"
+                                            :key="mechanic"
+                                        >
+
+                                            <input
+                                                type="hidden"
+                                                name="mechanics[]"
+                                                :value="mechanic"
+                                            >
+
+                                        </template>
+
+                                    </div>
+
+
+                                    {{-- Assign --}}
                                     <button
                                         type="button"
-                                        class="inline-flex items-center justify-center gap-2 rounded-lg bg-gray-900 text-white px-4 py-2 text-sm hover:bg-gray-800"
+                                        class="inline-flex items-center
+                                               justify-center gap-2
+                                               rounded-lg bg-gray-900
+                                               text-white px-4 py-2
+                                               text-sm hover:bg-gray-800"
                                     >
+
                                         <i class="ti ti-user-check"></i>
+
                                         Assign
+
                                     </button>
 
                                 </div>
@@ -118,11 +467,20 @@
                         </div>
 
 
-                        <!-- JO -->
-                        <div class="border border-gray-200 rounded-xl p-4">
 
-                            <div class="flex flex-col lg:flex-row lg:items-center gap-4">
+                        {{-- ========================================= --}}
+                        {{-- JO-1043 --}}
+                        {{-- ========================================= --}}
 
+                        <div
+                            class="border border-gray-200 rounded-xl p-4"
+                            x-data="{ open: false, selected: [] }"
+                        >
+
+                            <div class="flex flex-col lg:flex-row lg:items-start gap-4">
+
+
+                                {{-- Job Order Information --}}
                                 <div class="flex-1">
 
                                     <div class="flex items-center gap-2">
@@ -131,19 +489,25 @@
                                             JO-1043
                                         </p>
 
-                                        <span class="bg-green-50 text-green-700 text-xs px-2 py-1 rounded-md">
+                                        <span
+                                            class="bg-green-50 text-green-700
+                                                   text-xs px-2 py-1 rounded-md"
+                                        >
                                             Approved
                                         </span>
 
                                     </div>
 
+
                                     <p class="text-sm mt-1">
                                         Mark Santos
                                     </p>
 
+
                                     <p class="text-xs text-gray-500 mt-0.5">
                                         Ford Ranger · Engine check
                                     </p>
+
 
                                     <p class="text-xs text-gray-400 mt-1">
                                         Approved Sep 11, 2026
@@ -152,23 +516,194 @@
                                 </div>
 
 
-                                <div class="flex flex-col sm:flex-row gap-2">
+                                {{-- Assignment Controls --}}
+                                <div
+                                    class="flex flex-col sm:flex-row
+                                           sm:items-start gap-2"
+                                >
 
-                                    <select
-                                        class="min-w-[190px] px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white text-gray-600"
-                                    >
-                                        <option>Select mechanic</option>
-                                        <option>John Cuyos</option>
-                                        <option>Sharwen Lopez</option>
-                                        <option>Adili</option>
-                                    </select>
+                                    {{-- Mechanic Selector --}}
+                                    <div class="w-full sm:w-64">
 
+                                        {{-- Selector Button --}}
+                                        <button
+                                            type="button"
+                                            @click="open = !open"
+                                            class="w-full inline-flex items-center
+                                                   justify-between gap-3 rounded-lg
+                                                   border border-gray-200
+                                                   bg-white px-3 py-2 text-sm
+                                                   text-gray-600
+                                                   hover:bg-gray-50"
+                                        >
+
+                                            <span
+                                                x-text="
+                                                    selected.length === 0
+                                                        ? 'Select mechanic(s)'
+                                                        : selected.length + ' mechanic(s) selected'
+                                                "
+                                            >
+                                                Select mechanic(s)
+                                            </span>
+
+
+                                            <i
+                                                class="ti ti-chevron-down text-sm
+                                                       transition-transform"
+                                                :class="{ 'rotate-180': open }"
+                                            ></i>
+
+                                        </button>
+
+
+                                        {{-- Mechanic Options --}}
+                                        <div
+                                            x-show="open"
+                                            x-transition
+                                            class="mt-2 w-full rounded-xl
+                                                   border border-gray-200
+                                                   bg-white p-2 shadow-sm"
+                                        >
+
+                                            <p
+                                                class="px-3 py-2 text-xs
+                                                       font-medium uppercase
+                                                       tracking-wide text-gray-400"
+                                            >
+                                                Select mechanics
+                                            </p>
+
+
+                                            {{-- John Cuyos --}}
+                                            <label
+                                                class="flex cursor-pointer
+                                                       items-center gap-3
+                                                       rounded-lg px-3 py-2
+                                                       hover:bg-gray-50"
+                                            >
+
+                                                <input
+                                                    type="checkbox"
+                                                    value="john-cuyos"
+                                                    x-model="selected"
+                                                    class="rounded border-gray-300
+                                                           text-gray-900
+                                                           focus:ring-gray-200"
+                                                >
+
+                                                <span class="text-sm text-gray-700">
+                                                    John Cuyos
+                                                </span>
+
+                                            </label>
+
+
+                                            {{-- Sharwen Lopez --}}
+                                            <label
+                                                class="flex cursor-pointer
+                                                       items-center gap-3
+                                                       rounded-lg px-3 py-2
+                                                       hover:bg-gray-50"
+                                            >
+
+                                                <input
+                                                    type="checkbox"
+                                                    value="sharwen-lopez"
+                                                    x-model="selected"
+                                                    class="rounded border-gray-300
+                                                           text-gray-900
+                                                           focus:ring-gray-200"
+                                                >
+
+                                                <span class="text-sm text-gray-700">
+                                                    Sharwen Lopez
+                                                </span>
+
+                                            </label>
+
+
+                                            {{-- Adili --}}
+                                            <label
+                                                class="flex cursor-pointer
+                                                       items-center gap-3
+                                                       rounded-lg px-3 py-2
+                                                       hover:bg-gray-50"
+                                            >
+
+                                                <input
+                                                    type="checkbox"
+                                                    value="adili"
+                                                    x-model="selected"
+                                                    class="rounded border-gray-300
+                                                           text-gray-900
+                                                           focus:ring-gray-200"
+                                                >
+
+                                                <span class="text-sm text-gray-700">
+                                                    Adili
+                                                </span>
+
+                                            </label>
+
+
+                                            {{-- Mechanic 4 --}}
+                                            <label
+                                                class="flex cursor-pointer
+                                                       items-center gap-3
+                                                       rounded-lg px-3 py-2
+                                                       hover:bg-gray-50"
+                                            >
+
+                                                <input
+                                                    type="checkbox"
+                                                    value="mechanic-4"
+                                                    x-model="selected"
+                                                    class="rounded border-gray-300
+                                                           text-gray-900
+                                                           focus:ring-gray-200"
+                                                >
+
+                                                <span class="text-sm text-gray-700">
+                                                    Mechanic 4
+                                                </span>
+
+                                            </label>
+
+                                        </div>
+
+
+                                        {{-- Selected Mechanics --}}
+                                        <template
+                                            x-for="mechanic in selected"
+                                            :key="mechanic"
+                                        >
+
+                                            <input
+                                                type="hidden"
+                                                name="mechanics[]"
+                                                :value="mechanic"
+                                            >
+
+                                        </template>
+
+                                    </div>
+
+
+                                    {{-- Assign --}}
                                     <button
                                         type="button"
-                                        class="inline-flex items-center justify-center gap-2 rounded-lg bg-gray-900 text-white px-4 py-2 text-sm hover:bg-gray-800"
+                                        class="inline-flex items-center
+                                               justify-center gap-2
+                                               rounded-lg bg-gray-900
+                                               text-white px-4 py-2
+                                               text-sm hover:bg-gray-800"
                                     >
+
                                         <i class="ti ti-user-check"></i>
+
                                         Assign
+
                                     </button>
 
                                 </div>
@@ -183,7 +718,8 @@
                 </div>
 
 
-                <!-- Active Mechanics -->
+
+                {{-- Active Mechanics --}}
                 <div class="bg-white border border-gray-200 rounded-xl p-5">
 
                     <p class="font-medium">
@@ -195,9 +731,13 @@
                     </p>
 
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-2
+                               lg:grid-cols-4 gap-3"
+                    >
 
 
+                        {{-- Adili --}}
                         <div class="border border-gray-200 rounded-lg p-4">
 
                             <div class="flex items-center justify-between">
@@ -206,7 +746,9 @@
                                     Adili
                                 </p>
 
-                                <span class="h-2 w-2 rounded-full bg-green-500"></span>
+                                <span
+                                    class="h-2 w-2 rounded-full bg-green-500"
+                                ></span>
 
                             </div>
 
@@ -217,6 +759,7 @@
                         </div>
 
 
+                        {{-- John Cuyos --}}
                         <div class="border border-gray-200 rounded-lg p-4">
 
                             <div class="flex items-center justify-between">
@@ -225,7 +768,9 @@
                                     John Cuyos
                                 </p>
 
-                                <span class="h-2 w-2 rounded-full bg-green-500"></span>
+                                <span
+                                    class="h-2 w-2 rounded-full bg-green-500"
+                                ></span>
 
                             </div>
 
@@ -236,6 +781,7 @@
                         </div>
 
 
+                        {{-- Sharwen Lopez --}}
                         <div class="border border-gray-200 rounded-lg p-4">
 
                             <div class="flex items-center justify-between">
@@ -244,7 +790,9 @@
                                     Sharwen Lopez
                                 </p>
 
-                                <span class="h-2 w-2 rounded-full bg-green-500"></span>
+                                <span
+                                    class="h-2 w-2 rounded-full bg-green-500"
+                                ></span>
 
                             </div>
 
@@ -255,6 +803,7 @@
                         </div>
 
 
+                        {{-- Mechanic 4 --}}
                         <div class="border border-gray-200 rounded-lg p-4">
 
                             <div class="flex items-center justify-between">
@@ -263,7 +812,9 @@
                                     Mechanic 4
                                 </p>
 
-                                <span class="h-2 w-2 rounded-full bg-gray-500"></span>
+                                <span
+                                    class="h-2 w-2 rounded-full bg-gray-500"
+                                ></span>
 
                             </div>
 
@@ -277,6 +828,7 @@
                     </div>
 
                 </div>
+
 
             </main>
 

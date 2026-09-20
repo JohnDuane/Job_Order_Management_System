@@ -25,52 +25,128 @@
 
 
             <!-- Stats -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
 
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-[13px] text-gray-500 mb-1.5">
-                        Pending approval
-                    </p>
+    {{-- Pending Approval --}}
+    <div
+        x-data="{ period: 'total' }"
+        class="bg-gray-50 rounded-lg p-4"
+    >
 
-                    <p class="text-2xl font-medium">
-                        5
-                    </p>
-                </div>
+        <div class="flex items-start justify-between gap-2">
+
+            <p class="text-[13px] text-gray-500 mb-1.5">
+                Pending approval
+            </p>
+
+            <select
+                x-model="period"
+                class="bg-transparent border-0 p-0 pr-5
+                       text-[11px] text-gray-500
+                       focus:ring-0 focus:outline-none
+                       cursor-pointer"
+            >
+                <option value="total">Total</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+            </select>
+
+        </div>
+
+        <p
+            class="text-2xl font-medium"
+            x-text="
+                period === 'total' ? '5' :
+                period === 'week' ? '3' :
+                period === 'month' ? '12' :
+                '48'
+            "
+        ></p>
+
+    </div>
 
 
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-[13px] text-gray-500 mb-1.5">
-                        Approved today
-                    </p>
+    {{-- Approved --}}
+    <div
+        x-data="{ period: 'total' }"
+        class="bg-gray-50 rounded-lg p-4"
+    >
 
-                    <p class="text-2xl font-medium">
-                        3
-                    </p>
-                </div>
+        <div class="flex items-start justify-between gap-2">
+
+            <p class="text-[13px] text-gray-500 mb-1.5">
+                Approved
+            </p>
+
+            <select
+                x-model="period"
+                class="bg-transparent border-0 p-0 pr-5
+                       text-[11px] text-gray-500
+                       focus:ring-0 focus:outline-none
+                       cursor-pointer"
+            >
+                <option value="total">Total</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+            </select>
+
+        </div>
+
+        <p
+            class="text-2xl font-medium"
+            x-text="
+                period === 'total' ? '3' :
+                period === 'week' ? '8' :
+                period === 'month' ? '24' :
+                '97'
+            "
+        ></p>
+
+    </div>
 
 
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-[13px] text-gray-500 mb-1.5">
-                        Rejected today
-                    </p>
+    {{-- Rejected --}}
+    <div
+        x-data="{ period: 'total' }"
+        class="bg-gray-50 rounded-lg p-4"
+    >
 
-                    <p class="text-2xl font-medium">
-                        1
-                    </p>
-                </div>
+        <div class="flex items-start justify-between gap-2">
 
+            <p class="text-[13px] text-gray-500 mb-1.5">
+                Rejected
+            </p>
 
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-[13px] text-gray-500 mb-1.5">
-                        Active mechanics
-                    </p>
+            <select
+                x-model="period"
+                class="bg-transparent border-0 p-0 pr-5
+                       text-[11px] text-gray-500
+                       focus:ring-0 focus:outline-none
+                       cursor-pointer"
+            >
+                <option value="total">Total</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+            </select>
 
-                    <p class="text-2xl font-medium">
-                        4
-                    </p>
-                </div>
+        </div>
 
-            </div>
+        <p
+            class="text-2xl font-medium"
+            x-text="
+                period === 'total' ? '1' :
+                period === 'week' ? '2' :
+                period === 'month' ? '7' :
+                '31'
+            "
+        ></p>
+
+    </div>
+
+</div>
 
 
             <!-- Pending Approvals -->
@@ -103,21 +179,10 @@
 
                             <button
                                 type="button"
-                                aria-label="Approve"
-                                class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-green-600 hover:bg-green-50 transition">
-
-                                <i class="ti ti-check text-base"></i>
-
-                            </button>
-
-
-                            <button
-                                type="button"
-                                aria-label="Reject"
-                                class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-red-600 hover:bg-red-50 transition">
-
-                                <i class="ti ti-x text-base"></i>
-
+                                class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                            >
+                                <i class="ti ti-eye"></i>
+                                Review
                             </button>
 
                         </div>
@@ -145,21 +210,10 @@
 
                             <button
                                 type="button"
-                                aria-label="Approve"
-                                class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-green-600 hover:bg-green-50 transition">
-
-                                <i class="ti ti-check text-base"></i>
-
-                            </button>
-
-
-                            <button
-                                type="button"
-                                aria-label="Reject"
-                                class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-red-600 hover:bg-red-50 transition">
-
-                                <i class="ti ti-x text-base"></i>
-
+                                class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                            >
+                                <i class="ti ti-eye"></i>
+                                Review
                             </button>
 
                         </div>
@@ -187,21 +241,10 @@
 
                             <button
                                 type="button"
-                                aria-label="Approve"
-                                class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-green-600 hover:bg-green-50 transition">
-
-                                <i class="ti ti-check text-base"></i>
-
-                            </button>
-
-
-                            <button
-                                type="button"
-                                aria-label="Reject"
-                                class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-red-600 hover:bg-red-50 transition">
-
-                                <i class="ti ti-x text-base"></i>
-
+                                class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                            >
+                                <i class="ti ti-eye"></i>
+                                Review
                             </button>
 
                         </div>

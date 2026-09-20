@@ -22,7 +22,7 @@
                         </p>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('admin.users.addvehicles') }}"
                        class="inline-flex items-center gap-2 bg-gray-900 text-white rounded-lg px-4 py-2 text-sm hover:bg-gray-800">
 
                         <i class="ti ti-car"></i>
@@ -33,31 +33,130 @@
                 </div>
 
 
-                <!-- Search / Filter -->
-                <div class="flex flex-wrap gap-3">
+                <!-- Search + Filter -->
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
 
-                    <div class="relative flex-1 min-w-[220px] max-w-md">
+                    {{-- Search --}}
+                    <div class="relative max-w-sm flex-1 sm:max-w-sm">
 
-                        <i class="ti ti-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <i
+                            class="ti ti-search absolute left-3 top-1/2
+                                -translate-y-1/2 text-gray-400"
+                        ></i>
 
                         <input
                             type="text"
-                            placeholder="Search plate number, model..."
-                            class="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg
-                                   focus:outline-none focus:ring-2 focus:ring-gray-100"
+                            placeholder="Search vehicle..."
+                            class="w-full rounded-lg border border-gray-200
+                                py-2 pl-9 pr-3 text-sm
+                                focus:border-gray-300
+                                focus:outline-none
+                                focus:ring-2 focus:ring-gray-100"
                         >
 
                     </div>
 
-                    <select
-                        class="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white text-gray-600"
+
+                    {{-- Filter --}}
+                    <div
+                        class="relative"
+                        x-data="{ open: false }"
                     >
-                        <option>All makes</option>
-                        <option>Toyota</option>
-                        <option>Honda</option>
-                        <option>Ford</option>
-                        <option>Suzuki</option>
-                    </select>
+
+                        <button
+                            type="button"
+                            @click="open = !open"
+                            @click.outside="open = false"
+                            class="inline-flex w-full items-center justify-center
+                                gap-2 rounded-lg border border-gray-200
+                                bg-white px-3 py-2 text-sm text-gray-600
+                                transition hover:bg-gray-50
+                                sm:w-auto"
+                        >
+
+                            <i class="ti ti-filter text-base"></i>
+
+                            Filter
+
+                            <i
+                                class="ti ti-chevron-down text-xs transition-transform"
+                                :class="{ 'rotate-180': open }"
+                            ></i>
+
+                        </button>
+
+
+                        {{-- Filter Dropdown --}}
+                        <div
+                            x-show="open"
+                            x-transition
+                            class="absolute right-0 z-20 mt-2 w-48
+                                rounded-xl border border-gray-200
+                                bg-white p-2 shadow-lg"
+                        >
+
+                            <p class="px-3 py-2 text-xs font-medium uppercase tracking-wide text-gray-400">
+                                Sort / Filter
+                            </p>
+
+
+                            {{-- A-Z --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-sort-ascending text-base text-gray-400"></i>
+
+                                A–Z
+                            </button>
+
+
+                            {{-- Z-A --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-sort-descending text-base text-gray-400"></i>
+
+                                Z–A
+                            </button>
+
+
+                            <div class="my-1 border-t border-gray-100"></div>
+
+
+                            {{-- By Name --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-user text-base text-gray-400"></i>
+
+                                By make
+                            </button>
+
+
+                            {{-- By Role --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-user-shield text-base text-gray-400"></i>
+
+                                By Owner
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -130,10 +229,45 @@
                                         2022
                                     </td>
 
-                                    <td class="px-5 py-3 text-right">
-                                        <a href="#" class="text-gray-500 hover:text-gray-900">
-                                            <i class="ti ti-chevron-right"></i>
-                                        </a>
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center justify-end gap-2">
+
+                                            {{-- Edit --}}
+                                            <a
+                                                href="#"
+                                                class="inline-flex items-center gap-1.5 rounded-lg
+                                                    border border-gray-200 px-2.5 py-1.5
+                                                    text-xs font-medium text-gray-600
+                                                    transition hover:bg-gray-50 hover:text-gray-900"
+                                            >
+                                                <i class="ti ti-edit text-sm"></i>
+                                                Edit
+                                            </a>
+
+
+                                            {{-- Delete --}}
+                                            <form
+                                                method="POST"
+                                                action="#"
+                                                onsubmit="return confirm('Are you sure you want to delete this customer?')"
+                                            >
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button
+                                                    type="submit"
+                                                    class="inline-flex items-center gap-1.5 rounded-lg
+                                                        border border-gray-200 px-2.5 py-1.5
+                                                        text-xs font-medium text-red-600
+                                                        transition hover:bg-red-50 hover:border-red-200"
+                                                >
+                                                    <i class="ti ti-trash text-sm"></i>
+                                                    Delete
+                                                </button>
+
+                                            </form>
+
+                                        </div>
                                     </td>
 
                                 </tr>
@@ -158,10 +292,45 @@
                                         2021
                                     </td>
 
-                                    <td class="px-5 py-3 text-right">
-                                        <a href="#" class="text-gray-500 hover:text-gray-900">
-                                            <i class="ti ti-chevron-right"></i>
-                                        </a>
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center justify-end gap-2">
+
+                                            {{-- Edit --}}
+                                            <a
+                                                href="#"
+                                                class="inline-flex items-center gap-1.5 rounded-lg
+                                                    border border-gray-200 px-2.5 py-1.5
+                                                    text-xs font-medium text-gray-600
+                                                    transition hover:bg-gray-50 hover:text-gray-900"
+                                            >
+                                                <i class="ti ti-edit text-sm"></i>
+                                                Edit
+                                            </a>
+
+
+                                            {{-- Delete --}}
+                                            <form
+                                                method="POST"
+                                                action="#"
+                                                onsubmit="return confirm('Are you sure you want to delete this customer?')"
+                                            >
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button
+                                                    type="submit"
+                                                    class="inline-flex items-center gap-1.5 rounded-lg
+                                                        border border-gray-200 px-2.5 py-1.5
+                                                        text-xs font-medium text-red-600
+                                                        transition hover:bg-red-50 hover:border-red-200"
+                                                >
+                                                    <i class="ti ti-trash text-sm"></i>
+                                                    Delete
+                                                </button>
+
+                                            </form>
+
+                                        </div>
                                     </td>
 
                                 </tr>
@@ -186,10 +355,45 @@
                                         2023
                                     </td>
 
-                                    <td class="px-5 py-3 text-right">
-                                        <a href="#" class="text-gray-500 hover:text-gray-900">
-                                            <i class="ti ti-chevron-right"></i>
-                                        </a>
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center justify-end gap-2">
+
+                                            {{-- Edit --}}
+                                            <a
+                                                href="#"
+                                                class="inline-flex items-center gap-1.5 rounded-lg
+                                                    border border-gray-200 px-2.5 py-1.5
+                                                    text-xs font-medium text-gray-600
+                                                    transition hover:bg-gray-50 hover:text-gray-900"
+                                            >
+                                                <i class="ti ti-edit text-sm"></i>
+                                                Edit
+                                            </a>
+
+
+                                            {{-- Delete --}}
+                                            <form
+                                                method="POST"
+                                                action="#"
+                                                onsubmit="return confirm('Are you sure you want to delete this customer?')"
+                                            >
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button
+                                                    type="submit"
+                                                    class="inline-flex items-center gap-1.5 rounded-lg
+                                                        border border-gray-200 px-2.5 py-1.5
+                                                        text-xs font-medium text-red-600
+                                                        transition hover:bg-red-50 hover:border-red-200"
+                                                >
+                                                    <i class="ti ti-trash text-sm"></i>
+                                                    Delete
+                                                </button>
+
+                                            </form>
+
+                                        </div>
                                     </td>
 
                                 </tr>

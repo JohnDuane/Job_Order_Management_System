@@ -25,7 +25,7 @@
                     </div>
 
 
-                    <a href="#"
+                    <a href="{{ route('admin.users.addservices') }}"
                        class="inline-flex items-center gap-2 bg-gray-900 text-white rounded-lg px-4 py-2 text-sm hover:bg-gray-800">
 
                         <i class="ti ti-plus"></i>
@@ -36,17 +36,142 @@
                 </div>
 
 
-                <!-- Search -->
-                <div class="relative max-w-md">
+                <!-- Search + Filter -->
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
 
-                    <i class="ti ti-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    {{-- Search --}}
+                    <div class="relative max-w-sm flex-1 sm:max-w-sm">
 
-                    <input
-                        type="text"
-                        placeholder="Search services..."
-                        class="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg
-                               focus:outline-none focus:ring-2 focus:ring-gray-100"
+                        <i
+                            class="ti ti-search absolute left-3 top-1/2
+                                -translate-y-1/2 text-gray-400"
+                        ></i>
+
+                        <input
+                            type="text"
+                            placeholder="Search services..."
+                            class="w-full rounded-lg border border-gray-200
+                                py-2 pl-9 pr-3 text-sm
+                                focus:border-gray-300
+                                focus:outline-none
+                                focus:ring-2 focus:ring-gray-100"
+                        >
+
+                    </div>
+
+
+                    {{-- Filter --}}
+                    <div
+                        class="relative"
+                        x-data="{ open: false }"
                     >
+
+                        <button
+                            type="button"
+                            @click="open = !open"
+                            @click.outside="open = false"
+                            class="inline-flex w-full items-center justify-center
+                                gap-2 rounded-lg border border-gray-200
+                                bg-white px-3 py-2 text-sm text-gray-600
+                                transition hover:bg-gray-50
+                                sm:w-auto"
+                        >
+
+                            <i class="ti ti-filter text-base"></i>
+
+                            Filter
+
+                            <i
+                                class="ti ti-chevron-down text-xs transition-transform"
+                                :class="{ 'rotate-180': open }"
+                            ></i>
+
+                        </button>
+
+
+                        {{-- Filter Dropdown --}}
+                        <div
+                            x-show="open"
+                            x-transition
+                            class="absolute right-0 z-20 mt-2 w-48
+                                rounded-xl border border-gray-200
+                                bg-white p-2 shadow-lg"
+                        >
+
+                            <p class="px-3 py-2 text-xs font-medium uppercase tracking-wide text-gray-400">
+                                Sort / Filter
+                            </p>
+
+
+                            {{-- A-Z --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-sort-ascending text-base text-gray-400"></i>
+
+                                A–Z
+                            </button>
+
+
+                            {{-- Z-A --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-sort-descending text-base text-gray-400"></i>
+
+                                Z–A
+                            </button>
+
+
+                             {{-- Low-High --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-sort-descending text-base text-gray-400"></i>
+
+                                Low-High
+                            </button>
+
+                             {{-- High-Low --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-sort-descending text-base text-gray-400"></i>
+
+                                High-Low
+                            </button>
+
+
+                            <div class="my-1 border-t border-gray-100"></div>
+
+
+                            {{-- By Name --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-user text-base text-gray-400"></i>
+
+                                By Name
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
 

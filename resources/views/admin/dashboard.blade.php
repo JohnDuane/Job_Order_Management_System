@@ -58,14 +58,100 @@
                 </div>
 
 
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-[13px] text-gray-500 mb-1.5">
-                        Job orders this month
-                    </p>
+                <!-- Job Orders Period -->
+                <div
+                    class="bg-gray-50 rounded-lg p-4"
+                    x-data="{
+                        period: 'month',
+                        counts: {
+                            week: 12,
+                            month: 42,
+                            year: 386
+                        }
+                    }"
+                >
+                    <div class="flex items-start justify-between gap-2">
 
-                    <p class="text-2xl font-medium">
-                        42
-                    </p>
+                        <div>
+                            <p class="text-[13px] text-gray-500 mb-1.5">
+                                Job orders
+                            </p>
+
+                            <p
+                                class="text-2xl font-medium"
+                                x-text="counts[period]"
+                            >
+                                42
+                            </p>
+                        </div>
+
+                        <!-- Period Selector -->
+                        <div class="relative" x-data="{ open: false }">
+
+                            <button
+                                type="button"
+                                @click="open = !open"
+                                @click.outside="open = false"
+                                class="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-gray-900 transition"
+                            >
+                                <span
+                                    x-text="
+                                        period === 'week'
+                                            ? 'This week'
+                                            : period === 'month'
+                                                ? 'This month'
+                                                : 'This year'
+                                    "
+                                >
+                                    This month
+                                </span>
+
+                                <i
+                                    class="ti ti-chevron-down text-sm transition-transform"
+                                    :class="{ 'rotate-180': open }"
+                                ></i>
+                            </button>
+
+
+                            <!-- Dropdown -->
+                            <div
+                                x-show="open"
+                                x-transition
+                                class="absolute right-0 z-20 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-sm p-1"
+                            >
+
+                                <button
+                                    type="button"
+                                    @click="period = 'week'; open = false"
+                                    class="w-full text-left px-3 py-2 text-xs rounded-md hover:bg-gray-50 transition"
+                                    :class="period === 'week' ? 'bg-gray-50 text-gray-900' : 'text-gray-500'"
+                                >
+                                    This week
+                                </button>
+
+                                <button
+                                    type="button"
+                                    @click="period = 'month'; open = false"
+                                    class="w-full text-left px-3 py-2 text-xs rounded-md hover:bg-gray-50 transition"
+                                    :class="period === 'month' ? 'bg-gray-50 text-gray-900' : 'text-gray-500'"
+                                >
+                                    This month
+                                </button>
+
+                                <button
+                                    type="button"
+                                    @click="period = 'year'; open = false"
+                                    class="w-full text-left px-3 py-2 text-xs rounded-md hover:bg-gray-50 transition"
+                                    :class="period === 'year' ? 'bg-gray-50 text-gray-900' : 'text-gray-500'"
+                                >
+                                    This year
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
 
             </div>
@@ -74,13 +160,13 @@
             <!-- Quick Actions -->
             <div class="flex flex-wrap gap-2">
 
-                <a href="#"
+                <a href="{{ route('admin.users.addcustomer') }}"
                    class="flex-1 min-w-[140px] flex items-center justify-center gap-2 border border-gray-200 rounded-lg px-4 py-2 text-sm hover:bg-gray-50 transition">
                     <i class="ti ti-user-plus text-base"></i>
                     Add customer
                 </a>
 
-                <a href="#"
+                <a href="{{ route('admin.users.addvehicles') }}"
                    class="flex-1 min-w-[140px] flex items-center justify-center gap-2 border border-gray-200 rounded-lg px-4 py-2 text-sm hover:bg-gray-50 transition">
                     <i class="ti ti-car text-base"></i>
                     Add vehicle
@@ -92,10 +178,10 @@
                     Add staff
                 </a>
 
-                <a href="#"
+                <a href="{{ route('admin.users.addservices') }}"
                    class="flex-1 min-w-[140px] flex items-center justify-center gap-2 border border-gray-200 rounded-lg px-4 py-2 text-sm hover:bg-gray-50 transition">
                     <i class="ti ti-tool text-base"></i>
-                    Manage services
+                    Add services
                 </a>
 
             </div>
@@ -176,8 +262,8 @@
                                 </td>
 
                                 <td class="py-2.5">
-                                    <span class="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-md">
-                                        In progress
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2.5 py-1 rounded-md">
+                                        Pending
                                     </span>
                                 </td>
                             </tr>
@@ -227,7 +313,7 @@
 
                                 <td class="py-2.5">
                                     <span class="bg-green-50 text-green-700 text-xs px-2.5 py-1 rounded-md">
-                                        Completed
+                                        Approved
                                     </span>
                                 </td>
                             </tr>

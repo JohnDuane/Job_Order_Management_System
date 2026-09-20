@@ -23,31 +23,126 @@
                 </div>
 
 
-                <!-- Filters -->
-                <div class="flex flex-wrap gap-3">
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
 
-                    <div class="relative flex-1 min-w-[220px] max-w-md">
+                    {{-- Search --}}
+                    <div class="relative max-w-sm flex-1 sm:max-w-sm">
 
-                        <i class="ti ti-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <i
+                            class="ti ti-search absolute left-3 top-1/2
+                                -translate-y-1/2 text-gray-400"
+                        ></i>
 
                         <input
                             type="text"
-                            placeholder="Search job orders..."
-                            class="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg
-                                   focus:outline-none focus:ring-2 focus:ring-blue-100
-                                   focus:border-blue-300"
+                            placeholder="Search Job Orders..."
+                            class="w-full rounded-lg border border-gray-200
+                                py-2 pl-9 pr-3 text-sm
+                                focus:border-gray-300
+                                focus:outline-none
+                                focus:ring-2 focus:ring-gray-100"
                         >
 
                     </div>
 
 
-                    <select
-                        class="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white text-gray-600"
+                    {{-- Filter --}}
+                    <div
+                        class="relative"
+                        x-data="{ open: false }"
                     >
-                        <option>All actions</option>
-                        <option>Approved</option>
-                        <option>Rejected</option>
-                    </select>
+
+                        <button
+                            type="button"
+                            @click="open = !open"
+                            @click.outside="open = false"
+                            class="inline-flex w-full items-center justify-center
+                                gap-2 rounded-lg border border-gray-200
+                                bg-white px-3 py-2 text-sm text-gray-600
+                                transition hover:bg-gray-50
+                                sm:w-auto"
+                        >
+
+                            <i class="ti ti-filter text-base"></i>
+
+                            Filter
+
+                            <i
+                                class="ti ti-chevron-down text-xs transition-transform"
+                                :class="{ 'rotate-180': open }"
+                            ></i>
+
+                        </button>
+
+
+                        {{-- Filter Dropdown --}}
+                        <div
+                            x-show="open"
+                            x-transition
+                            class="absolute right-0 z-20 mt-2 w-48
+                                rounded-xl border border-gray-200
+                                bg-white p-2 shadow-lg"
+                        >
+
+                            <p class="px-3 py-2 text-xs font-medium uppercase tracking-wide text-gray-400">
+                                Sort / Filter
+                            </p>
+
+
+                             {{-- Low-High --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-sort-descending text-base text-gray-400"></i>
+
+                                Recent
+                            </button>
+
+                             {{-- High-Low --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-sort-descending text-base text-gray-400"></i>
+
+                                Oldest
+                            </button>
+
+
+                            <div class="my-1 border-t border-gray-100"></div>
+
+
+                            {{-- By Name --}}
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-user text-base text-gray-400"></i>
+
+                                By Customer
+                            </button>
+
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-3 rounded-lg
+                                    px-3 py-2 text-sm text-gray-700
+                                    transition hover:bg-gray-50"
+                            >
+                                <i class="ti ti-user text-base text-gray-400"></i>
+
+                                By J.O. ID
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
 

@@ -26,7 +26,7 @@
                 </div>
 
 
-                <a href="#"
+                <a href="{{ route('mechanic.CJO') }}"
                    class="shrink-0 flex items-center gap-2 bg-gray-900 text-white rounded-lg px-4 py-2 text-sm hover:bg-gray-800 transition">
 
                     <i class="ti ti-plus text-base"></i>
@@ -43,7 +43,7 @@
                 <div class="bg-gray-50 rounded-lg p-4">
 
                     <p class="text-[13px] text-gray-500 mb-1.5">
-                        Assigned to me
+                        Tasks
                     </p>
 
                     <p class="text-2xl font-medium">
@@ -56,7 +56,7 @@
                 <div class="bg-gray-50 rounded-lg p-4">
 
                     <p class="text-[13px] text-gray-500 mb-1.5">
-                        In progress
+                        Pending
                     </p>
 
                     <p class="text-2xl font-medium">
@@ -82,7 +82,7 @@
                 <div class="bg-gray-50 rounded-lg p-4">
 
                     <p class="text-[13px] text-gray-500 mb-1.5">
-                        Completed this week
+                        Approved Job Order
                     </p>
 
                     <p class="text-2xl font-medium">
@@ -91,6 +91,150 @@
 
                 </div>
 
+            </div>
+
+
+            <!-- Your Tasks -->
+            <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+                <div class="px-5 py-4 border-b border-gray-200 flex items-center justify-between">
+                    <div>
+                        <h2 class="text-[15px] font-semibold text-gray-900">
+                            Your Tasks
+                        </h2>
+                        <p class="text-[13px] text-gray-500 mt-0.5">
+                            Tasks assigned to you
+                        </p>
+                    </div>
+
+                    <a href="{{ route('supervisor.pending-approvals') }}"
+                        class="text-[13px] font-medium text-gray-700 hover:text-gray-900 transition">
+                        View all
+                    </a>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="border-b border-gray-200 bg-gray-50/70">
+                                <th class="px-5 py-3 text-[12px] font-semibold text-gray-500 uppercase tracking-wide">
+                                    Task
+                                </th>
+                                <th class="px-5 py-3 text-[12px] font-semibold text-gray-500 uppercase tracking-wide">
+                                    Job Order
+                                </th>
+                                <th class="px-5 py-3 text-[12px] font-semibold text-gray-500 uppercase tracking-wide">
+                                    Due Date
+                                </th>
+                                <th class="px-5 py-3 text-[12px] font-semibold text-gray-500 uppercase tracking-wide">
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="divide-y divide-gray-100">
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-5 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center">
+                                            <i class="ti ti-tool text-[18px] text-gray-600"></i>
+                                        </div>
+
+                                        <div>
+                                            <p class="text-[13px] font-medium text-gray-900">
+                                                Brake inspection
+                                            </p>
+                                            <p class="text-[12px] text-gray-500">
+                                                Toyota Vios
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="px-5 py-4 text-[13px] text-gray-700">
+                                    JO-2026-0012
+                                </td>
+
+                                <td class="px-5 py-4 text-[13px] text-gray-600">
+                                    Sep 19, 2026
+                                </td>
+
+                                <td class="px-5 py-4">
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-yellow-50 text-yellow-700 text-[11px] font-medium">
+                                        Pending
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-5 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center">
+                                            <i class="ti ti-settings text-[18px] text-gray-600"></i>
+                                        </div>
+
+                                        <div>
+                                            <p class="text-[13px] font-medium text-gray-900">
+                                                Engine tune-up
+                                            </p>
+                                            <p class="text-[12px] text-gray-500">
+                                                Mitsubishi Mirage
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="px-5 py-4 text-[13px] text-gray-700">
+                                    JO-2026-0010
+                                </td>
+
+                                <td class="px-5 py-4 text-[13px] text-gray-600">
+                                    Sep 20, 2026
+                                </td>
+
+                                <td class="px-5 py-4">
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-yellow-50 text-yellow-700 text-[11px] font-medium">
+                                        Pending
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-5 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center">
+                                            <i class="ti ti-car text-[18px] text-gray-600"></i>
+                                        </div>
+
+                                        <div>
+                                            <p class="text-[13px] font-medium text-gray-900">
+                                                Oil change
+                                            </p>
+                                            <p class="text-[12px] text-gray-500">
+                                                Toyota Innova
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="px-5 py-4 text-[13px] text-gray-700">
+                                    JO-2026-0008
+                                </td>
+
+                                <td class="px-5 py-4 text-[13px] text-gray-600">
+                                    Sep 21, 2026
+                                </td>
+
+                                
+
+                                <td class="px-5 py-4">
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-green-50 text-green-700 text-[11px] font-medium">
+                                        Approved
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
 
@@ -120,8 +264,8 @@
                         </div>
 
 
-                        <span class="shrink-0 bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-md">
-                            In progress
+                        <span class="shrink-0 bg-yellow-50 text-yellow-700 text-xs px-2.5 py-1 rounded-md">
+                            Pending
                         </span>
 
                     </div>
@@ -144,7 +288,7 @@
 
 
                         <span class="shrink-0 bg-green-50 text-green-700 text-xs px-2.5 py-1 rounded-md">
-                            Completed
+                            Approved
                         </span>
 
                     </div>
