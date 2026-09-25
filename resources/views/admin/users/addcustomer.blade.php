@@ -199,38 +199,6 @@
                                 </div>
 
 
-                                {{-- Email --}}
-                                <div>
-
-                                    <label
-                                        for="email"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
-                                        Email
-                                    </label>
-
-                                    <div class="relative mt-1.5">
-
-                                        <i class="ti ti-mail absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-
-                                        <input
-                                            id="email"
-                                            type="email"
-                                            name="email"
-                                            value="{{ old('email') }}"
-                                            placeholder="customer@example.com"
-                                            class="block w-full rounded-lg border border-gray-200
-                                                   py-2.5 pl-10 pr-3 text-sm
-                                                   placeholder:text-gray-400
-                                                   focus:border-gray-400 focus:outline-none
-                                                   focus:ring-2 focus:ring-gray-100"
-                                        >
-
-                                    </div>
-
-                                </div>
-
-
                                 {{-- Address --}}
                                 <div class="sm:col-span-2">
 

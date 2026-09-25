@@ -143,32 +143,6 @@
                                 </div>
 
 
-                                {{-- Model --}}
-                                <div>
-
-                                    <label
-                                        for="model"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
-                                        Model
-                                    </label>
-
-                                    <input
-                                        id="model"
-                                        type="text"
-                                        name="model"
-                                        value="{{ old('model') }}"
-                                        placeholder="Vios"
-                                        class="mt-1.5 block w-full rounded-lg border border-gray-200
-                                               px-3 py-2.5 text-sm
-                                               placeholder:text-gray-400
-                                               focus:border-gray-400 focus:outline-none
-                                               focus:ring-2 focus:ring-gray-100"
-                                    >
-
-                                </div>
-
-
                                 {{-- Year --}}
                                 <div>
 
