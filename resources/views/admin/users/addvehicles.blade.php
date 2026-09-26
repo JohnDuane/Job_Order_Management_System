@@ -117,58 +117,87 @@
                                 </div>
 
 
-                                {{-- Make --}}
-                                <div>
 
-                                    <label
-                                        for="make"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
-                                        Make
-                                    </label>
+                                {{-- COMBINE INTO ONE ENTITY ON THE DATABASE --}}
 
-                                    <input
-                                        id="make"
-                                        type="text"
-                                        name="make"
-                                        value="{{ old('make') }}"
-                                        placeholder="Toyota"
-                                        class="mt-1.5 block w-full rounded-lg border border-gray-200
-                                               px-3 py-2.5 text-sm
-                                               placeholder:text-gray-400
-                                               focus:border-gray-400 focus:outline-none
-                                               focus:ring-2 focus:ring-gray-100"
-                                    >
+                                            {{-- Make --}}
+                                            <div>
 
-                                </div>
+                                                <label
+                                                    for="make"
+                                                    class="block text-sm font-medium text-gray-700"
+                                                >
+                                                    Make
+                                                </label>
+
+                                                <input
+                                                    id="make"
+                                                    type="text"
+                                                    name="make"
+                                                    value="{{ old('make') }}"
+                                                    placeholder="Toyota"
+                                                    class="mt-1.5 block w-full rounded-lg border border-gray-200
+                                                        px-3 py-2.5 text-sm
+                                                        placeholder:text-gray-400
+                                                        focus:border-gray-400 focus:outline-none
+                                                        focus:ring-2 focus:ring-gray-100"
+                                                >
+
+                                            </div>
 
 
-                                {{-- Year --}}
-                                <div>
+                                            {{-- Model --}}
+                                            <div>
 
-                                    <label
-                                        for="year"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
-                                        Year
-                                    </label>
+                                                <label
+                                                    for="model"
+                                                    class="block text-sm font-medium text-gray-700"
+                                                >
+                                                    Model
+                                                </label>
 
-                                    <input
-                                        id="year"
-                                        type="number"
-                                        name="year"
-                                        value="{{ old('year') }}"
-                                        placeholder="2022"
-                                        min="1900"
-                                        max="{{ date('Y') + 1 }}"
-                                        class="mt-1.5 block w-full rounded-lg border border-gray-200
-                                               px-3 py-2.5 text-sm
-                                               placeholder:text-gray-400
-                                               focus:border-gray-400 focus:outline-none
-                                               focus:ring-2 focus:ring-gray-100"
-                                    >
+                                                <input
+                                                    id="model"
+                                                    type="text"
+                                                    name="model"
+                                                    value="{{ old('model') }}"
+                                                    placeholder="Vios"
+                                                    class="mt-1.5 block w-full rounded-lg border border-gray-200
+                                                        px-3 py-2.5 text-sm
+                                                        placeholder:text-gray-400
+                                                        focus:border-gray-400 focus:outline-none
+                                                        focus:ring-2 focus:ring-gray-100"
+                                                >
 
-                                </div>
+                                            </div>
+
+
+                                            {{-- Year --}}
+                                            <div>
+
+                                                <label
+                                                    for="year"
+                                                    class="block text-sm font-medium text-gray-700"
+                                                >
+                                                    Year
+                                                </label>
+
+                                                <input
+                                                    id="year"
+                                                    type="number"
+                                                    name="year"
+                                                    value="{{ old('year') }}"
+                                                    placeholder="2022"
+                                                    min="1900"
+                                                    max="{{ date('Y') + 1 }}"
+                                                    class="mt-1.5 block w-full rounded-lg border border-gray-200
+                                                        px-3 py-2.5 text-sm
+                                                        placeholder:text-gray-400
+                                                        focus:border-gray-400 focus:outline-none
+                                                        focus:ring-2 focus:ring-gray-100"
+                                                >
+
+                                            </div>
 
 
                                 {{-- Plate Number --}}
@@ -197,52 +226,30 @@
                                 </div>
 
 
-                                {{-- Vehicle Type --}}
-                                <div>
+                                {{-- Engine Model --}}
+                                            <div>
 
-                                    <label
-                                        for="vehicle_type"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
-                                        Vehicle type
-                                    </label>
+                                                <label
+                                                    for="make"
+                                                    class="block text-sm font-medium text-gray-700"
+                                                >
+                                                    Engine Model
+                                                </label>
 
-                                    <select
-                                        id="vehicle_type"
-                                        name="vehicle_type"
-                                        class="mt-1.5 block w-full rounded-lg border border-gray-200
-                                               bg-white px-3 py-2.5 text-sm
-                                               focus:border-gray-400 focus:outline-none
-                                               focus:ring-2 focus:ring-gray-100"
-                                    >
+                                                <input
+                                                    id="make"
+                                                    type="text"
+                                                    name="make"
+                                                    value="{{ old('make') }}"
+                                                    placeholder="VT-II"
+                                                    class="mt-1.5 block w-full rounded-lg border border-gray-200
+                                                        px-3 py-2.5 text-sm
+                                                        placeholder:text-gray-400
+                                                        focus:border-gray-400 focus:outline-none
+                                                        focus:ring-2 focus:ring-gray-100"
+                                                >
 
-                                        <option value="">
-                                            Select type
-                                        </option>
-
-                                        <option value="Car">
-                                            Car
-                                        </option>
-
-                                        <option value="SUV">
-                                            SUV
-                                        </option>
-
-                                        <option value="Truck">
-                                            Truck
-                                        </option>
-
-                                        <option value="Van">
-                                            Van
-                                        </option>
-
-                                        <option value="Other">
-                                            Other
-                                        </option>
-
-                                    </select>
-
-                                </div>
+                                            </div>
 
                             </div>
 
