@@ -45,7 +45,7 @@
                 {{-- Form --}}
                 <form
                     method="POST"
-                    action="#"
+                    action="{{ route('admin.users.addcustomer.store') }}"
                     class="max-w-3xl"
                 >
 
@@ -194,7 +194,15 @@
                                                    focus:ring-2 focus:ring-gray-100"
                                         >
 
+                                        
+
                                     </div>
+
+                                    @error('contact_number')
+                                        <p class="mt-1.5 text-xs text-red-600">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
 
                                 </div>
 
@@ -221,6 +229,12 @@
                                                focus:ring-2 focus:ring-gray-100"
                                     >{{ old('address') }}</textarea>
 
+
+                                @error('address')
+                                    <p class="mt-1.5 text-xs text-red-600">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                                 </div>
 
                             </div>
@@ -261,5 +275,102 @@
         </div>
 
     </div>
+
+
+
+    {{-- Success Modal --}}
+@if (session('success'))
+
+    <div
+        x-data="{ show: true }"
+        x-show="show"
+        x-transition
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
+    >
+
+        <div
+            @click.outside="show = false"
+            class="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl"
+        >
+
+            {{-- Header --}}
+            <div class="flex items-start gap-4">
+
+                <div
+                    class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-green-100"
+                >
+                    <i class="ti ti-check text-xl text-green-600"></i>
+                </div>
+
+                <div class="flex-1">
+
+                    <h2 class="text-lg font-semibold text-gray-900">
+                        Customer added
+                    </h2>
+
+                    <p class="mt-1 text-sm text-gray-500">
+                        {{ session('success') }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {{-- Vehicle Question --}}
+            <div class="mt-5 rounded-xl bg-gray-50 p-4">
+
+                <div class="flex items-start gap-3">
+
+                    <i class="ti ti-car text-lg text-gray-500"></i>
+
+                    <div>
+
+                        <p class="text-sm font-medium text-gray-800">
+                            Add a vehicle?
+                        </p>
+
+                        <p class="mt-1 text-xs leading-5 text-gray-500">
+                            Would you like to add a vehicle for this customer now?
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {{-- Actions --}}
+            <div class="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+
+                <a
+                    href="{{ route('admin.customers') }}"
+                    class="rounded-lg border border-gray-200 px-4 py-2.5
+                        text-sm font-medium text-gray-700
+                        transition hover:bg-gray-50
+                        text-center"
+                >
+                    Not now
+                </a>
+
+
+                <a
+                    href="{{ route('admin.users.addvehicles', ['customer' => session('customer_id')]) }}"
+                    class="rounded-lg bg-gray-900 px-4 py-2.5
+                        text-sm font-medium text-white
+                        transition hover:bg-gray-800
+                        text-center"
+                >
+                    Add vehicle
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+@endif
 
 </x-app-layout>

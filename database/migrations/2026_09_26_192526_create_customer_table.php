@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('middle_name')->nullable();
             $table->string('last_name');
 
-            $table->integer('contact_number');
+            $table->string('contact_number', 15);
             $table->string('address');
 
             $table->foreignId('created_by')

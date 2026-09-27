@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Customer;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\VehicleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,17 +34,50 @@ Route::get('/', function () {
                 return view('admin.users.create');
             })->name('users.create');
 
-            Route::get('/users/addcustomer', function () {
-                return view('admin.users.addcustomer');
-            })->name('users.addcustomer');
+            //ADDCUSTOMER
+            Route::get('/users/addcustomer', [CustomerController::class, 'create'])
+                ->name('users.addcustomer');
+
+            Route::post('/users/addcustomer', [CustomerController::class, 'store'])
+                ->name('users.addcustomer.store');
+
+            //READCUSTOMER
+            Route::get('/customers', [CustomerController::class, 'index'])
+                ->name('customers');
+
+            //UPDATECUSTOMER
+            Route::put('/customers/{customer}', [CustomerController::class, 'update'])
+                ->name('customers.update');
+
+            //DELETECUSTOMER
+            Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])
+                ->name('customers.destroy');
+
 
             Route::get('/users/addservices', function () {
                 return view('admin.users.addservices');
             })->name('users.addservices');
 
-            Route::get('/users/addvehicles', function () {
-                return view('admin.users.addvehicles');
-            })->name('users.addvehicles');
+
+            //ADDVEHICLE
+            Route::get('/users/addvehicles', [VehicleController::class, 'create'])
+                ->name('users.addvehicles');
+
+            Route::post('/users/addvehicles', [VehicleController::class, 'store'])
+                ->name('users.addvehicles.store');
+
+            //READVEHICLE
+            Route::get('/vehicles', [VehicleController::class, 'index'])
+                ->name('vehicles');
+
+            //UPDATEVEHICLE
+            Route::put('/vehicles/{vehicle}', [VehicleController::class, 'update'])
+                ->name('vehicles.update');
+
+            //DELETEVEHICLE
+            Route::delete('/vehicles/{vehicle}', [VehicleController::class, 'destroy'])
+                ->name('vehicles.destroy');
+
 
 
             Route::post('/users', [UserController::class, 'store'])
@@ -49,13 +85,10 @@ Route::get('/', function () {
 
             
             //sidenav
-            Route::get('/customers', function () {
-                return view('admin.customers');
-            })->name('customers');
+            Route::get('/customers', [CustomerController::class, 'index'])
+                ->name('customers');
 
-            Route::get('/vehicles', function () {
-                return view('admin.vehicles');
-            })->name('vehicles');
+            
 
             Route::get('/staff', function () {
                 return view('admin.staff');

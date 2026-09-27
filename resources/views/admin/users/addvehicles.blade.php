@@ -45,7 +45,7 @@
                 {{-- Form --}}
                 <form
                     method="POST"
-                    action="#"
+                    action="{{ route('admin.users.addvehicles.store') }}"
                     class="max-w-3xl"
                 >
 
@@ -74,47 +74,46 @@
 
 
                                 {{-- Customer --}}
-                                <div class="sm:col-span-2">
+                        <div class="sm:col-span-2">
 
-                                    <label
-                                        for="customer"
-                                        class="block text-sm font-medium text-gray-700"
+                            <label
+                                for="cust_id"
+                                class="block text-sm font-medium text-gray-700"
+                            >
+                                Customer
+                            </label>
+
+                            <select
+                                id="cust_id"
+                                name="cust_id"
+                                required
+                                class="mt-1.5 block w-full rounded-lg border border-gray-200
+                                    bg-white px-3 py-2.5 text-sm
+                                    focus:border-gray-400 focus:outline-none
+                                    focus:ring-2 focus:ring-gray-100"
+                            >
+
+                                <option value="" disabled
+                                    {{ old('cust_id', $selectedCustomer) ? '' : 'selected' }}>
+                                    Select customer
+                                </option>
+
+                                @foreach ($customers as $customer)
+
+                                    <option
+                                        value="{{ $customer->cust_id }}"
+                                        {{ (string) old('cust_id', $selectedCustomer) === (string) $customer->cust_id ? 'selected' : '' }}
                                     >
-                                        Customer
-                                    </label>
+                                        {{ $customer->first_name }}
+                                        {{ $customer->middle_name ? $customer->middle_name . ' ' : '' }}
+                                        {{ $customer->last_name }}
+                                    </option>
 
-                                    <select
-                                        id="customer"
-                                        name="customer"
-                                        class="mt-1.5 block w-full rounded-lg border border-gray-200
-                                               bg-white px-3 py-2.5 text-sm
-                                               focus:border-gray-400 focus:outline-none
-                                               focus:ring-2 focus:ring-gray-100"
-                                    >
+                                @endforeach
 
-                                        <option value="">
-                                            Select customer
-                                        </option>
+                            </select>
 
-                                        <option value="Juan Dela Cruz">
-                                            Juan Dela Cruz
-                                        </option>
-
-                                        <option value="Ana Reyes">
-                                            Ana Reyes
-                                        </option>
-
-                                        <option value="Mark Santos">
-                                            Mark Santos
-                                        </option>
-
-                                        <option value="Liza Cruz">
-                                            Liza Cruz
-                                        </option>
-
-                                    </select>
-
-                                </div>
+                        </div>
 
 
 
@@ -143,6 +142,12 @@
                                                         focus:ring-2 focus:ring-gray-100"
                                                 >
 
+                                                @error('make')
+                                                    <p class="mt-1.5 text-xs text-red-600">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+
                                             </div>
 
 
@@ -168,6 +173,12 @@
                                                         focus:border-gray-400 focus:outline-none
                                                         focus:ring-2 focus:ring-gray-100"
                                                 >
+
+                                                @error('model')
+                                                    <p class="mt-1.5 text-xs text-red-600">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
 
                                             </div>
 
@@ -197,6 +208,12 @@
                                                         focus:ring-2 focus:ring-gray-100"
                                                 >
 
+                                                @error('year')
+                                                    <p class="mt-1.5 text-xs text-red-600">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+
                                             </div>
 
 
@@ -223,33 +240,45 @@
                                                focus:ring-2 focus:ring-gray-100"
                                     >
 
+                                    @error('plate_number')
+                                        <p class="mt-1.5 text-xs text-red-600">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+
                                 </div>
 
 
                                 {{-- Engine Model --}}
-                                            <div>
+                                <div>
 
-                                                <label
-                                                    for="make"
-                                                    class="block text-sm font-medium text-gray-700"
-                                                >
-                                                    Engine Model
-                                                </label>
+                                    <label
+                                        for="engine_model"
+                                        class="block text-sm font-medium text-gray-700"
+                                    >
+                                        Engine Model
+                                    </label>
 
-                                                <input
-                                                    id="make"
-                                                    type="text"
-                                                    name="make"
-                                                    value="{{ old('make') }}"
-                                                    placeholder="VT-II"
-                                                    class="mt-1.5 block w-full rounded-lg border border-gray-200
-                                                        px-3 py-2.5 text-sm
-                                                        placeholder:text-gray-400
-                                                        focus:border-gray-400 focus:outline-none
-                                                        focus:ring-2 focus:ring-gray-100"
-                                                >
+                                    <input
+                                        id="engine_model"
+                                        type="text"
+                                        name="engine_model"
+                                        value="{{ old('engine_model') }}"
+                                        placeholder="VT-II"
+                                        class="mt-1.5 block w-full rounded-lg border border-gray-200
+                                            px-3 py-2.5 text-sm
+                                            placeholder:text-gray-400
+                                            focus:border-gray-400 focus:outline-none
+                                            focus:ring-2 focus:ring-gray-100"
+                                    >
 
-                                            </div>
+                                    @error('engine_model')
+                                        <p class="mt-1.5 text-xs text-red-600">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+
+                                </div>
 
                             </div>
 
@@ -273,8 +302,9 @@
                         <button
                             type="submit"
                             class="inline-flex items-center justify-center gap-2
-                                   rounded-lg bg-gray-900 px-4 py-2.5 text-sm
-                                   font-medium text-white hover:bg-gray-800"
+                                rounded-lg bg-gray-900 px-4 py-2.5
+                                text-sm font-medium text-white
+                                transition hover:bg-gray-800"
                         >
                             <i class="ti ti-car"></i>
                             Add vehicle
