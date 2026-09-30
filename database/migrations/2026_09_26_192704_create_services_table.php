@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('service_name');
             $table->text('job_desc')->nullable();
 
-            $table->integer('price');
+            $table->decimal('price', 10, 2);
         });
     }
 

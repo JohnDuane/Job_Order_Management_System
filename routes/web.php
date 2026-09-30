@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\VehicleController;
+use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -54,11 +55,6 @@ Route::get('/', function () {
                 ->name('customers.destroy');
 
 
-            Route::get('/users/addservices', function () {
-                return view('admin.users.addservices');
-            })->name('users.addservices');
-
-
             //ADDVEHICLE
             Route::get('/users/addvehicles', [VehicleController::class, 'create'])
                 ->name('users.addvehicles');
@@ -90,17 +86,45 @@ Route::get('/', function () {
 
             
 
-            Route::get('/staff', function () {
-                return view('admin.staff');
-            })->name('staff');
+            //READSTAFF
+            Route::get('/staff', [UserController::class, 'index'])
+                ->name('staff');
+
+            //UPDATESTAFF
+            Route::put('/staff/{user}', [UserController::class, 'update'])
+                ->name('staff.update');
+
+            //DELETESTAFF
+            Route::delete('/staff/{user}', [UserController::class, 'destroy'])
+                ->name('staff.destroy');
+
 
             Route::get('/job-orders', function () {
                 return view('admin.job-orders');
             })->name('job-orders');
 
-            Route::get('/services', function () {
-                return view('admin.services');
-            })->name('services');
+
+            // READSERVICES
+            Route::get('/services', [ServiceController::class, 'index'])
+                ->name('services');
+
+
+            // ADDSERVICE
+            Route::get('/users/addservices', [ServiceController::class, 'create'])
+                ->name('users.addservices');
+
+            Route::post('/services', [ServiceController::class, 'store'])
+                ->name('services.store');
+
+
+            // UPDATE SERVICE
+            Route::put('/services/{service}', [ServiceController::class, 'update'])
+                ->name('services.update');
+
+                
+            // DELETE SERVICE
+            Route::delete('/services/{service}', [ServiceController::class, 'destroy'])
+                ->name('services.destroy');
         });
 
 

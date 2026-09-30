@@ -45,10 +45,9 @@
                 {{-- Form --}}
                 <form
                     method="POST"
-                    action="#"
+                    action="{{ route('admin.services.store') }}"
                     class="max-w-3xl"
                 >
-
                     @csrf
 
 
@@ -133,6 +132,12 @@
                                                focus:border-gray-400 focus:outline-none
                                                focus:ring-2 focus:ring-gray-100"
                                     >{{ old('description') }}</textarea>
+
+                                    @error('description')
+                                        <p class="mt-1.5 text-xs text-red-600">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
 
                                 </div>
 
